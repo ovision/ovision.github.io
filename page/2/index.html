@@ -165,6 +165,221 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Installing-Caffe-Ubuntu-cpu-only" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/19/Installing-Caffe-Ubuntu-cpu-only/">Installing Caffe on Ubuntu (CPU-ONLY)</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/19/Installing-Caffe-Ubuntu-cpu-only/" class="archive-article-date">
+  	<time datetime="2018-03-19T22:02:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>First, to tell you guys the truth, I had no intention to write this post. You know, because I actually don’t have much experience with Caffe. And I am not some kind of experienced tech-guy who can deal with almost developing environment, either.</p>
+<p>Remember I told you about how to prepare your AWS g2.x2large instance for Machine Learning? You can have a look at this post <a href="https://chunml.github.io/ChunML.github.io/project/Prepare-AWS-Instance/" target="_blank" rel="noopener">here</a>{:target=”_blank”}. I recommended you to use AWS’s instance because of the fact that most of us can’t afford a proper desktop to run Machine Learning stuff. But of course it is always a good idea to set things up similarly on your local machine. Why? Because we can do all the coding on your machine (like configure your network architecture, or test if your codes can be compiled without errors, etc), and just leave the heavy tasks for the GPU instance. It would help you save some money.</p>
+        
+          <a class="article-more-a" href="/2018/03/19/Installing-Caffe-Ubuntu-cpu-only/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine-learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">deep-learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">caffe</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">installation</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">environment</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">essential</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/research//" class="article-tag-list-link color4">research</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/19/Installing-Caffe-Ubuntu-cpu-only/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Installing-Caffe-Ubuntu" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/19/Installing-Caffe-Ubuntu/">Installing Caffe on Ubuntu 16.04 (GPU Mode with CUDA)</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/19/Installing-Caffe-Ubuntu/" class="archive-article-date">
+  	<time datetime="2018-03-19T02:02:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>It’s great to be with all you guys again in today’s post. As you already knew, it’s been a while since I built my own desktop for Deep Learning. Or for ones who missed that post, you can have a look at my build here: </p>
+<ul>
+<li><a href="https://chunml.github.io/ChunML.github.io/project/Building-Desktop-For-Deep-Learning/" target="_blank" rel="noopener">Building up my own machine for Deep Learning</a>{:target=”_blank”}</li>
+</ul>
+<p>And in the last few days, I was like a kid who had just received some new toys from his parents (I bought my desktop by my own money, though). I was so excited that I couldn’t wait any longer to get started. So right after I put all the parts right into their places, the first thing I got to do was installing the OS, of course. I’m running Ubuntu 16.04 on my laptop, so I couldn’t find any reason for not installing the latest Long-Term-Support version of Ubuntu on my desktop. The OS installation was quite easy, especially Ubuntu or any Linux based OS. The next thing to do was to install the necessary drivers. Actually nearly all the drivers were installed during the installation of Ubuntu, so I only had to manually install the GTX 1070 driver, but it was a piece of cake and you would laugh at me if I write it down here. In this post, I want to talk about the three main points below:<br>
+        
+          <a class="article-more-a" href="/2018/03/19/Installing-Caffe-Ubuntu/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine-learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">deep-learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">caffe</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gpu</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">cuda</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/research//" class="article-tag-list-link color4">research</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/19/Installing-Caffe-Ubuntu/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-github-issue-project-GTD" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -961,6 +1176,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">fsm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">DHT11</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">STM32</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ADC</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,19 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ovision.github.io">
-  <title>posted by atom markdown writer | OVision科研小组博客</title>
+  <title>Installing Caffe on Ubuntu 16.04 (GPU Mode with CUDA) | OVision科研小组博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hello world">
+  <meta name="description" content="It’s great to be with all you guys again in today’s post. As you already knew, it’s been a while since I built my own desktop for Deep Learning. Or for ones who missed that post, you can have a look a">
+<meta name="keywords" content="machine-learning,deep-learning,caffe,gpu,cuda">
 <meta property="og:type" content="article">
-<meta property="og:title" content="posted by atom markdown writer">
-<meta property="og:url" content="http://ovision.github.io/2018/08/13/posted by atom markdown writer/index.html">
+<meta property="og:title" content="Installing Caffe on Ubuntu 16.04 (GPU Mode with CUDA)">
+<meta property="og:url" content="http://ovision.github.io/2018/03/19/Installing-Caffe-Ubuntu/index.html">
 <meta property="og:site_name" content="OVision科研小组博客">
-<meta property="og:description" content="hello world">
+<meta property="og:description" content="It’s great to be with all you guys again in today’s post. As you already knew, it’s been a while since I built my own desktop for Deep Learning. Or for ones who missed that post, you can have a look a">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://ovision.github.io/images/projects/installing-caffe-ubuntu/cuda.png">
+<meta property="og:image" content="http://ovision.github.io/images/projects/installing-caffe-ubuntu/cudnn.png">
+<meta property="og:image" content="http://ovision.github.io/images/projects/installing-caffe-ubuntu/cudnn_down.png">
+<meta property="og:image" content="http://ovision.github.io/images/projects/installing-caffe-ubuntu/mnist_cpu.png">
+<meta property="og:image" content="http://ovision.github.io/images/projects/installing-caffe-ubuntu/mnist_gpu.png">
+<meta property="og:image" content="http://ovision.github.io/images/projects/installing-caffe-ubuntu/cifar10_cpu.png">
+<meta property="og:image" content="http://ovision.github.io/images/projects/installing-caffe-ubuntu/cifar10_gpu.png">
 <meta property="og:updated_time" content="2018-11-17T02:58:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="posted by atom markdown writer">
-<meta name="twitter:description" content="hello world">
+<meta name="twitter:title" content="Installing Caffe on Ubuntu 16.04 (GPU Mode with CUDA)">
+<meta name="twitter:description" content="It’s great to be with all you guys again in today’s post. As you already knew, it’s been a while since I built my own desktop for Deep Learning. Or for ones who missed that post, you can have a look a">
+<meta name="twitter:image" content="http://ovision.github.io/images/projects/installing-caffe-ubuntu/cuda.png">
   
     <link rel="alternative" href="/atom.xml" title="OVision科研小组博客" type="application/atom+xml">
   
@@ -164,27 +173,129 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-posted by atom markdown writer" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Installing-Caffe-Ubuntu" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      posted by atom markdown writer
+      Installing Caffe on Ubuntu 16.04 (GPU Mode with CUDA)
     </h1>
   
 
         
-        <a href="/2018/08/13/posted by atom markdown writer/" class="archive-article-date">
-  	<time datetime="2018-08-13T15:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-13</time>
+        <a href="/2018/03/19/Installing-Caffe-Ubuntu/" class="archive-article-date">
+  	<time datetime="2018-03-19T02:02:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h3>
+        <p>It’s great to be with all you guys again in today’s post. As you already knew, it’s been a while since I built my own desktop for Deep Learning. Or for ones who missed that post, you can have a look at my build here: </p>
+<ul>
+<li><a href="https://chunml.github.io/ChunML.github.io/project/Building-Desktop-For-Deep-Learning/" target="_blank" rel="noopener">Building up my own machine for Deep Learning</a>{:target=”_blank”}</li>
+</ul>
+<p>And in the last few days, I was like a kid who had just received some new toys from his parents (I bought my desktop by my own money, though). I was so excited that I couldn’t wait any longer to get started. So right after I put all the parts right into their places, the first thing I got to do was installing the OS, of course. I’m running Ubuntu 16.04 on my laptop, so I couldn’t find any reason for not installing the latest Long-Term-Support version of Ubuntu on my desktop. The OS installation was quite easy, especially Ubuntu or any Linux based OS. The next thing to do was to install the necessary drivers. Actually nearly all the drivers were installed during the installation of Ubuntu, so I only had to manually install the GTX 1070 driver, but it was a piece of cake and you would laugh at me if I write it down here. In this post, I want to talk about the three main points below:<br><a id="more"></a>   </p>
+<ul>
+<li>Installing Caffe on Ubuntu 16.04 in GPU Mode</li>
+<li>Comparing the performance between CPU and GPU using MNIST and CIFAR-10 datasets</li>
+</ul>
+<p>As you may notice that I once talked about the first one in my previous posts. Actually I didn’t have myself a desktop with GPU in it, so that post was mainly about how to make things work only by using CPU. And obviously I can’t just do the same thing this time if I want the GTX 1070 to be on the field. In short, there’s a great deal of extra work to do if you want to make use the power of your GPU. And in this post I’m gonna show you how.</p>
+<h3 id="Installing-Caffe-on-Ubuntu-16-04-in-GPU-Mode"><a href="#Installing-Caffe-on-Ubuntu-16-04-in-GPU-Mode" class="headerlink" title="Installing Caffe on Ubuntu 16.04 in GPU Mode"></a>Installing Caffe on Ubuntu 16.04 in GPU Mode</h3><p>The first thing to do before installing Caffe was to install OpenCV, because I wanted to compile Caffe with OpenCV. Installing OpenCV wasn’t a big deal at all. You can refer at my previous post here:</p>
+<ul>
+<li><a href="https://chunml.github.io/ChunML.&quot;&quot;github.io/tutorial/Setting-Up-Python-Environment-For-Computer-Vision-And-Machine-Learning/" target="_blank" rel="noopener">Installing OpenCV &amp; Keras</a>{:target=”_blank”}</li>
+</ul>
+<p>To make it more convenient for you without having to switch between your browser tabs, I think it’s better if I write out the steps for installing OpenCV in this post, too.</p>
+<p>First, because I got in my desktop a fresh and new OS, I had to perform the commands below to make sure everything is updated to the latest version:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
+<p>Type the password if prompted. When the process completes, let’s install all the necessary packages:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential cmake git pkg-config libjpeg8-dev \</span><br><span class="line">libjasper-dev libpng12-dev libgtk2.0-dev \</span><br><span class="line">libavcodec-dev libavformat-dev libswscale-dev libv4l-dev gfortran</span><br><span class="line">sudo apt-get install libtiff5-dev</span><br></pre></td></tr></table></figure>
+<p>And we need a library for computing optimization purpose. We will use BLAS just like before:</p>
+<p><code>sudo apt-get install libatlas-base-dev</code></p>
+<p>Next, we will install <strong>pip</strong>, a useful tool for managing all Python packages:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">sudo python get-pip.py</span><br></pre></td></tr></table></figure>
+<p>In order to use OpenCV and Caffe, we need to install Python Development Tools package:</p>
+<p><code>sudo apt-get install python2.7-dev</code></p>
+<p>And of course, a powerful module for dealing with arrays, Numpy:</p>
+<p><code>pip install numpy</code></p>
+<p>In the next step, let’s download OpenCV 3.0 and its contribution modules:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">git clone https://github.com/Itseez/opencv.git</span><br><span class="line">cd opencv</span><br><span class="line">git checkout 3.0.0</span><br><span class="line">cd ~</span><br><span class="line">git clone https://github.com/Itseez/opencv_contrib.git</span><br><span class="line">cd opencv_contrib</span><br><span class="line">git checkout 3.0.0</span><br></pre></td></tr></table></figure>
+<p>Note that you have to tell <strong>git</strong> to checkout to <em>3.0.0</em> branch. Now we have everything ready, let’s go and make it:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cd ~/opencv</span><br><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake -D CMAKE_BUILD_TYPE=RELEASE \</span><br><span class="line">	-D CMAKE_INSTALL_PREFIX=/usr/local \</span><br><span class="line">	-D INSTALL_C_EXAMPLES=ON \</span><br><span class="line">	-D INSTALL_PYTHON_EXAMPLES=ON \</span><br><span class="line">	-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \</span><br><span class="line">	-D BUILD_EXAMPLES=ON ..</span><br><span class="line">  </span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
+<p>It should take a while to complete the installation. Try to have yourself a cup of coffee or something, because we are just half way there, lol.</p>
+<p>After the installation finishes, let’s check if everything works:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python</span><br><span class="line">&gt;&gt;&gt; import cv2</span><br><span class="line">&gt;&gt;&gt; cv2.__version__</span><br><span class="line">&apos;3.0.0&apos;</span><br></pre></td></tr></table></figure>
+<p>If you got a result like above, then OpenCV 3.0 was successfully installed on your machine. If something goes wrong, try to do it all over again, this time make sure that you don’t miss any line above. If you still can’t make it work, please let me know by dropping me a line below. I’ll be glad to help.</p>
+<p>Unlike the previous post, I will skip the installation of Keras this time, and focus on installing Caffe instead. If you want to install Keras, please give the link above a look.</p>
+<p>So now we have OpenCV 3.0 successfully installed. Next we will continue with Caffe. I’m assuming that you have at least one GPU installed. If you don’t, please refer to the post below:</p>
+<ul>
+<li><a href="https://chunml.github.io/ChunML.github.io/project/Installing-Caffe-CPU-Only/" target="_blank" rel="noopener">Installing Caffe on Ubuntu (CPU-ONLY)</a>{:target=”_blank”}</li>
+</ul>
+<p>This time we want to make use the power of GPU, we can tell Caffe that we want to use GPU, by commenting out the <em>CPU_ONLY</em> option, do you remember that? Unfortunately, it’s not that simple. Caffe is just a framework which helps us handle the Network, which means that with Caffe, we can define the Network structure, we can define rules, then Caffe will train and evaluate our Model. In fact, Caffe makes use of CUDA, a superb library provided by NVIDIA, to handle the communication with our GPU.</p>
+<p>So, in the next step, we will install the CUDA Toolkit. Let’s go to the <a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="noopener">CUDA Toolkit download page</a>{:target=”_blank”}, choose your OS, the OS Distribution and version carefully. The rest is simple, just follow the guide on the download page, and it’s done. The installation file’s size is pretty large, so it’s likely to take a while, so don’t lose your patience, lol.</p>
+<p><img src="/images/projects/installing-caffe-ubuntu/cuda.png" alt="cuda"></p>
+<p>Next, we will download cuDNN, which is a GPU-accelerated library of primitives for deep neural networks provided by NVIDIA. With cuDNN, the computation speed will be significantly accelerated. All we have to do is going to <a href="https://developer.nvidia.com/cudnn" target="_blank" rel="noopener">cuDNN home page</a>{:target=”_blank”}, register to the <em>Accelerated Computing Developer Program</em> (it’s free, but it’s a must to download cuDNN). After registering and completing their short survey, you will be redirected to the download page like below:</p>
+<p><img src="/images/projects/installing-caffe-ubuntu/cudnn.png" alt="cudnn"></p>
+<p>You may want to download the latest version, as NVIDIA claimed that it’s much faster than its predecessor. If you don’t have any intention to play around with Faster R-CNN, then you can grab the latest version. But if you want to play around with the most outstanding Object Detection algorithm out there, then I highly recommend you to choose the v4 Library. I will tell you why in later post. Before downloading, make sure that you choose the right version for Linux, the upper most one below the install guide:</p>
+<p><img src="/images/projects/installing-caffe-ubuntu/cudnn_down.png" alt="cudnn_down"></p>
+<p>After the download process completes, let’s extract the downloaded file (assuming that you’re placing it under Downloads folder):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Downloads</span><br><span class="line">tar -xvf cudnn-7.0-linux-x64-v4.0-prod.tgz</span><br></pre></td></tr></table></figure>
+<p>In the next step, you just have to copy the two extracted folders to where CUDA was installed, which is most likely at <em>/usr/local/cuda</em>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp lib64/* /usr/local/cuda/lib64</span><br><span class="line">sudo cp include/* /usr/local/cuda/include</span><br></pre></td></tr></table></figure>
+<p>That’s it. You have just successfully installed CUDA and cuDNN. Let’s move on and install Caffe. There won’t be much difference with the installation in CPU_ONLY mode.</p>
+<p>First, we have to install all the necessary packages and libraries:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libboost-all-dev libhdf5-serial-dev \</span><br><span class="line">libgflags-dev libgoogle-glog-dev liblmdb-dev protobuf-compiler</span><br><span class="line">sudo apt-get install -y --no-install-recommends libboost-all-dev</span><br></pre></td></tr></table></figure>
+<p>Next, let’s go to BVLC GitHub repository and grab the latest version of Caffe:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/BVLC/caffe</span><br><span class="line">cd caffe</span><br></pre></td></tr></table></figure>
+<p>Then we will create the <em>Makefile.config</em> file from the example file, just like before:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp Makefile.config.example Makefile.config</span><br></pre></td></tr></table></figure>
+<p>Let’s apply those modifications below:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># cuDNN acceleration switch (uncomment to build with cuDNN).</span><br><span class="line">USE_CUDNN := 1</span><br><span class="line"></span><br><span class="line"># Uncomment if you&apos;re using OpenCV 3</span><br><span class="line">OPENCV_VERSION := 3</span><br><span class="line"></span><br><span class="line"># We need to be able to find Python.h and numpy/arrayobject.h.</span><br><span class="line">PYTHON_INCLUDE := /usr/include/python2.7 \</span><br><span class="line">        /usr/local/lib/python2.7/dist-packages/numpy/core/include</span><br><span class="line"></span><br><span class="line"># Uncomment to support layers written in Python (will link against    Python libs)</span><br><span class="line">WITH_PYTHON_LAYER := 1</span><br><span class="line"></span><br><span class="line"># Whatever else you find you need goes here.</span><br><span class="line">INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial</span><br><span class="line">LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/</span><br></pre></td></tr></table></figure>
+<p>If you went through my post about installing Caffe in CPU_ONLY mode before, then all the modifications above should sound familiar with you. If you didn’t, you might want to take a look at that post to know why we have to make those changes. The only difference with what we did in the previous post is, instead of uncommenting the <em>CPU_ONLY := 1</em> line, we uncomment the <em>USE_CUDNN := 1</em> to take advantage of cuDNN.</p>
+<p>At this point, we can go through the compilation of Caffe without any error:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make all &amp; make test &amp;&amp; make runtest &amp;&amp; make pycaffe</span><br></pre></td></tr></table></figure>
+<p>Next, in order to use Caffe inside our Python code, we have to add pycaffe to the PYTHONPATH:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vim ~/.bashrc</span><br><span class="line"></span><br><span class="line">export PYTHONPATH=$HOME/Downloads/caffe/python:$PYTHONPATH</span><br></pre></td></tr></table></figure>
+<p>Then execute the command below to make the change take effect:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>Now let’s check if we have things work properly:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python</span><br><span class="line">&gt;&gt;&gt; import caffe</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p>If it don’t show any import error, then Congratulations, you have just successfully installed Caffe. The installation itself was confusing a little, but it didn’t require any complicated modifications, so somehow we still made it till the end. We can finally exhale now, lol.</p>
+<h3 id="Comparing-the-performance-between-CPU-and-GPU"><a href="#Comparing-the-performance-between-CPU-and-GPU" class="headerlink" title="Comparing the performance between CPU and GPU"></a>Comparing the performance between CPU and GPU</h3><p>So we have Caffe compiled, and with the support from CUDA &amp; cuDNN, we can take avantage of our GPU to speed up the learning process significantly. But, that’s just what we have been told so far. When we speak about the performance term, the words “good”, “faster”, “much faster” or even “significantly faster” are way too subtle and not much informative. In order to answer the question “How faster?”, it’s better to consider the difference in computing time between CPU Mode and GPU Mode. I will use two datasets which Caffe provided the trained models: MNIST and CIFAR-10 for comparing purpose. Note that in this post, I just consider the size of the dataset for simplicity, without considering the complexity of the Networks. I will dig more further about it on future posts on Neural Network.</p>
+<ul>
+<li>MNIST Dataset</li>
+</ul>
+<p>First, make sure you are in the root folder of Caffe, and run the commands below to download the MNIST dataset:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd $CAFFE_ROOT</span><br><span class="line">./data/mnist/get_mnist.sh</span><br><span class="line">./examples/mnist/create_mnist.sh</span><br></pre></td></tr></table></figure>
+<p>That’s all we have to do to prepare the data. Let’s see how much time the CPU need to run each iteration:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./build/tools/caffe time --model=examples/mnist/lenet_train_test.prototxt</span><br></pre></td></tr></table></figure>
+<p>And here’s my result on my Intel Core i7-6700K CPU:</p>
+<p><img src="/images/projects/installing-caffe-ubuntu/mnist_cpu.png" alt="mnist_cpu"></p>
+<p>As you can see, my CPU took approximately 55ms to run each iteration, in which 23ms for forward pass and 32ms for backward pass. Let’s go ahead and see if the GPU can do better:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./build/tools/caffe time --model=examples/mnist/lenet_train_test.prototxt</span><br></pre></td></tr></table></figure>
+<p>And here’s the result on my GTX 1070.</p>
+<p><img src="/images/projects/installing-caffe-ubuntu/mnist_gpu.png" alt="mnist_gpu"></p>
+<p>The result came out nearly right after I hit Enter. I was really impressed, I admit. Each iteration took only 1.7ms to complete, in which 0.5ms for forward pass and 1.2ms for backpropagation. Let’s do some calculation here: the computing time when using GPU is roughly 32 times faster than when using CPU. Hmm, not so bad, you may think. </p>
+<p>Because MNIST dataset is pretty small in size, which each example is just a 28x28 grayscale image, and it contains only 70000 images in total, the CPU still can give us an acceptable performance. Also note that in order to make use of the power of GPU, our computer has to take some times to transfer data to the GPU, so with small dataset and simple Network, the difference between the two may not be easily seen.</p>
+<p>Let’s go ahead and give them a more challenging one.</p>
+<ul>
+<li>CIFAR-10 Dataset</li>
+</ul>
+<p>CIFAR-10 is way larger comparing to MNIST. It contains 60000 32x32 color images, which means CIFAR-10 is roughly three times larger than MNIST. That’s a real challenge for both to overcome, right?</p>
+<p>Just like what we did with MNIST dataset, let’s first see how much time it takes using CPU:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./build/tools/caffe time --model=examples/cifar10/cifar10_full_train_test.prototxt</span><br></pre></td></tr></table></figure>
+<p>And here’s the result I got:</p>
+<p><img src="/images/projects/installing-caffe-ubuntu/cifar10_cpu.png" alt="cifar_cpu"></p>
+<p>As you can see, with a larger dataset (and a more complicated Network, of course), the computing speed was much slower comparing with MNIST dataset. It took approximately 526ms to complete one iteration: 238ms for forward pass and 288ms for backward pass. Let’s go ahead and see how well the big guy can do:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./build/tools/caffe time --model=examples/cifar10/cifar10_full_train_test.prototxt --gpu 0</span><br></pre></td></tr></table></figure>
+<p>And the result I had with my GTX 1070:</p>
+<p><img src="/images/projects/installing-caffe-ubuntu/cifar10_gpu.png" alt="cifar_gpu"></p>
+<p>Look at the result above. Unlike the significant decrease in performance as we saw when running on CPU, my GTX 1070 still brought me an impressive computing speed. It took only 11ms on one iteration, in which 3ms for forward pass and 8ms for backpropagation. So when running on CIFAR-10 dataset, the GPU really did outperform the CPU, which computed 48 times faster. Imagine you are working with some real large dataset in real life such as ImageNet, using GPU would save you a great deal of time (let’s say days or even weeks) on training. The faster you obtain the result, the more you can spend on improving the Model. That’s also the reason why Neural Network, especially Deep Neural Network, has become the biggest trend in Machine Learning after long time being ignored by the lack of computing power. Obviously not only nowadays, but Deep Neural Network will continue to grow in the future.</p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>So in this post, I have just shown you how to install OpenCV and Caffe in GPU Mode with CUDA Toolkit and cuDNN. I really appreciate that you made it to the end with patience. I hope that this post can help you prepare the necessary environment for your Deep Learning projects. </p>
+<p>And I also did some comparison on performance between GPU and CPU using two most common datasets: MNIST and CIFAR-10. Through the results above, I think you can now see how using GPU on Deep Neural Network can bring up a big difference.</p>
+<p>Finally, if you come across any compilation error, please kindly let me know. I’ll try my best to help. Can’t wait to see you soon, in the upcoming post.</p>
+
       
 
       
@@ -213,7 +324,45 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine-learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">deep-learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">caffe</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gpu</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">cuda</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/research//" class="article-tag-list-link color4">research</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -263,7 +412,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://ovision.github.io/2018/08/13/posted by atom markdown writer/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://ovision.github.io/2018/03/19/Installing-Caffe-Ubuntu/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -277,18 +426,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/08/13/drafts test/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/03/19/Installing-Caffe-Ubuntu-cpu-only/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          让你的Hexo博客支持LaTex公式写作
+          Installing Caffe on Ubuntu (CPU-ONLY)
         
       </div>
     </a>
   
   
-    <a href="/2018/04/12/raspberry-pi-cloudprint/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">A Raspberry Pi Cloud Print Proxy</div>
+    <a href="/2018/02/12/github-issue-project-GTD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">基于Github(Zenhub)的issue和Project的GTD时间管理</div>
       <i class="icon-circle-right"></i>
     </a>
   

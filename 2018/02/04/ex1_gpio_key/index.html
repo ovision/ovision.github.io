@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ovision.github.io">
-  <title>posted by atom markdown writer | OVision科研小组博客</title>
+  <title>实验1:输入输出实验-gpio模块 | OVision科研小组博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hello world">
+  <meta name="description" content="实验目的通过LED的实验掌握GPIO的输入输出模式、初始化与配置等，学习sysTick 时钟模块和中断的使用方法。主要实验内容有：  了解发光LED驱动原理和方法(GPIO输出初始化与配置) 按键采集功能(GPIO输入初始化与配置) 延时函数delay的写法(SysTick 定时器实现精准延时) 学习用中断的方法实现按键采集">
+<meta name="keywords" content="GPIO,LED">
 <meta property="og:type" content="article">
-<meta property="og:title" content="posted by atom markdown writer">
-<meta property="og:url" content="http://ovision.github.io/2018/08/13/posted by atom markdown writer/index.html">
+<meta property="og:title" content="实验1:输入输出实验-gpio模块">
+<meta property="og:url" content="http://ovision.github.io/2018/02/04/ex1_gpio_key/index.html">
 <meta property="og:site_name" content="OVision科研小组博客">
-<meta property="og:description" content="hello world">
+<meta property="og:description" content="实验目的通过LED的实验掌握GPIO的输入输出模式、初始化与配置等，学习sysTick 时钟模块和中断的使用方法。主要实验内容有：  了解发光LED驱动原理和方法(GPIO输出初始化与配置) 按键采集功能(GPIO输入初始化与配置) 延时函数delay的写法(SysTick 定时器实现精准延时) 学习用中断的方法实现按键采集">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-17T02:58:27.000Z">
+<meta property="og:updated_time" content="2019-10-29T02:39:05.574Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="posted by atom markdown writer">
-<meta name="twitter:description" content="hello world">
+<meta name="twitter:title" content="实验1:输入输出实验-gpio模块">
+<meta name="twitter:description" content="实验目的通过LED的实验掌握GPIO的输入输出模式、初始化与配置等，学习sysTick 时钟模块和中断的使用方法。主要实验内容有：  了解发光LED驱动原理和方法(GPIO输出初始化与配置) 按键采集功能(GPIO输入初始化与配置) 延时函数delay的写法(SysTick 定时器实现精准延时) 学习用中断的方法实现按键采集">
   
     <link rel="alternative" href="/atom.xml" title="OVision科研小组博客" type="application/atom+xml">
   
@@ -164,27 +165,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-posted by atom markdown writer" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ex1_gpio_key" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      posted by atom markdown writer
+      实验1:输入输出实验-gpio模块
     </h1>
   
 
         
-        <a href="/2018/08/13/posted by atom markdown writer/" class="archive-article-date">
-  	<time datetime="2018-08-13T15:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-13</time>
+        <a href="/2018/02/04/ex1_gpio_key/" class="archive-article-date">
+  	<time datetime="2018-02-04T11:09:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h3>
+        <h3 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h3><p>通过LED的实验掌握GPIO的输入输出模式、初始化与配置等，学习sysTick 时钟模块和中断的使用方法。主要实验内容有：</p>
+<ol>
+<li>了解发光LED驱动原理和方法(GPIO输出初始化与配置)</li>
+<li>按键采集功能(GPIO输入初始化与配置)</li>
+<li>延时函数delay的写法(SysTick 定时器实现精准延时)</li>
+<li>学习用中断的方法实现按键采集</li>
+</ol>
+<a id="more"></a>
+<h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p>编写代码，配置按键和LED对应引脚GPIO所需要的模式，实验LED不同的闪烁模式和亮度变化。</p>
+<h3 id="实验要点"><a href="#实验要点" class="headerlink" title="实验要点"></a>实验要点</h3><h4 id="LED对应GPIO的配置"><a href="#LED对应GPIO的配置" class="headerlink" title="LED对应GPIO的配置"></a>LED对应GPIO的配置</h4><p>开始学习 GPIO 控制 LED 之前先了解两个概念:端口复用和重映射。<br>复用的概念解决了外设数量与单片机引脚数量不一致所导致的问题。重映射功能的外设由 A 引脚映射到 B 引脚(假设此时 B 引脚没有用到),通过这种机制就解决了多种外设同时使用同一引脚时所引起的冲突问题。<br>    void initLED(void)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;                   //定义GPIO初始化结构体<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE); //使能GPIO时钟</p>
+<pre><code>GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;              //设置对应引脚
+GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;      //设置推挽输出
+GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;     //工作速度50MHz
+GPIO_Init(GPIOB, &amp;GPIO_InitStructure);         //设置生效
+GPIO_ResetBits(GPIOB, GPIO_Pin_5);         //默认低电平，LED不亮
+</code></pre><p>}<br>另外还用到了如下两个函数来点亮或者熄灭 LED:<br><code>GPIO_SetBits(GPIOB, GPIO_Pin_5);</code><br><code>GPIO_ResetBits(GPIOB, GPIO_Pin_5);</code><br>在IDE中打开定义可以查看其内容。</p>
+<h4 id="按键对应GPIO的配置"><a href="#按键对应GPIO的配置" class="headerlink" title="按键对应GPIO的配置"></a>按键对应GPIO的配置</h4><h4 id="Systick的配置"><a href="#Systick的配置" class="headerlink" title="Systick的配置"></a>Systick的配置</h4><h4 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h4>
       
 
       
@@ -213,7 +230,33 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">GPIO</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LED</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/research//" class="article-tag-list-link color4">research</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -263,7 +306,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://ovision.github.io/2018/08/13/posted by atom markdown writer/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://ovision.github.io/2018/02/04/ex1_gpio_key/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -277,18 +320,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/08/13/drafts test/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/02/04/hexo-configuration-backup-by-github-branch/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          让你的Hexo博客支持LaTex公式写作
+          使用github的branch分支管理和备份Hexo博客
         
       </div>
     </a>
   
   
-    <a href="/2018/04/12/raspberry-pi-cloudprint/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">A Raspberry Pi Cloud Print Proxy</div>
+    <a href="/2018/02/04/zotero-nutstore/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">知识管理软件zotero的多平台安装配置与坚果云同步详细教程</div>
       <i class="icon-circle-right"></i>
     </a>
   

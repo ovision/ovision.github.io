@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ovision.github.io">
-  <title>posted by atom markdown writer | OVision科研小组博客</title>
+  <title>Github 基础教程 | OVision科研小组博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hello world">
+  <meta name="description" content="git branch 使用方法Git鼓励大量使用分支.因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。 master: 主分支，主要用来版本发布。主分支包括 master 分支和 develop 分支。master 分支用来发布，HEAD 就是当前线上的运行代码。develop 分支就是我们的日常开">
+<meta name="keywords" content="github,git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="posted by atom markdown writer">
-<meta property="og:url" content="http://ovision.github.io/2018/08/13/posted by atom markdown writer/index.html">
+<meta property="og:title" content="Github 基础教程">
+<meta property="og:url" content="http://ovision.github.io/2018/02/05/Github-tutorial/index.html">
 <meta property="og:site_name" content="OVision科研小组博客">
-<meta property="og:description" content="hello world">
+<meta property="og:description" content="git branch 使用方法Git鼓励大量使用分支.因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。 master: 主分支，主要用来版本发布。主分支包括 master 分支和 develop 分支。master 分支用来发布，HEAD 就是当前线上的运行代码。develop 分支就是我们的日常开">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://ovision.github.io/img/git-model.png">
 <meta property="og:updated_time" content="2018-11-17T02:58:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="posted by atom markdown writer">
-<meta name="twitter:description" content="hello world">
+<meta name="twitter:title" content="Github 基础教程">
+<meta name="twitter:description" content="git branch 使用方法Git鼓励大量使用分支.因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。 master: 主分支，主要用来版本发布。主分支包括 master 分支和 develop 分支。master 分支用来发布，HEAD 就是当前线上的运行代码。develop 分支就是我们的日常开">
+<meta name="twitter:image" content="http://ovision.github.io/img/git-model.png">
   
     <link rel="alternative" href="/atom.xml" title="OVision科研小组博客" type="application/atom+xml">
   
@@ -164,27 +167,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-posted by atom markdown writer" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Github-tutorial" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      posted by atom markdown writer
+      Github 基础教程
     </h1>
   
 
         
-        <a href="/2018/08/13/posted by atom markdown writer/" class="archive-article-date">
-  	<time datetime="2018-08-13T15:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-13</time>
+        <a href="/2018/02/05/Github-tutorial/" class="archive-article-date">
+  	<time datetime="2018-02-05T07:26:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h3>
+        <h3 id="git-branch-使用方法"><a href="#git-branch-使用方法" class="headerlink" title="git branch 使用方法"></a>git branch 使用方法</h3><p>Git鼓励大量使用分支.因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。 master: 主分支，主要用来版本发布。主分支包括 master 分支和 develop 分支。master 分支用来发布，HEAD 就是当前线上的运行代码。develop 分支就是我们的日常开发。使用这两个分支就具有了最简单的开发模式：develop 分支用来开发功能，开发完成并且测试没有问题则将 develop 分支的代码合并到 master 分支并发布。参考<a href="http://blog.jobbole.com/109466/" target="_blank" rel="noopener">http://blog.jobbole.com/109466/</a><br><img src="/img/git-model.png" alt="git branch 说明">   //hexo部署时本站图片放在themes/yilia/img/目录下</p>
+<p>查看分支：<code>git branch   //git branch -a 命令会列出所有分支包括远程分支，当前分支前面会标一个*号。</code></p>
+<p>创建分支：<code>git branch &lt;name&gt;</code></p>
+<p>切换分支：<code>git checkout &lt;name&gt;</code></p>
+<p>创建+切换分支：<code>git checkout -b &lt;name&gt;</code></p>
+<p>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></p>
+<p>删除本地分支：<code>git branch -d &lt;name&gt;</code></p>
+<p>提交该分支到远程仓库：<code>git push origin develop</code></p>
+<p>测试从远程获取dev: <code>git pull origin develop</code></p>
+<p>删除远程分支：<code>git push origin --delete develop</code></p>
+<p>删除分支：<code>git branch -d &lt;name&gt;</code></p>
+<h3 id="git-pull-冲突解决方法："><a href="#git-pull-冲突解决方法：" class="headerlink" title="git pull 冲突解决方法："></a>git pull 冲突解决方法：</h3><p>git pull时出现冲突 放弃本地修改，拉取远程库内容强制覆盖本地代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git fetch --all //只是下载代码到本地，不进行合并操作</span><br><span class="line"></span><br><span class="line">git reset --hard origin/master  //把HEAD指向最新下载的版本，慎用</span><br><span class="line"></span><br><span class="line">git pull</span><br></pre></td></tr></table></figure></p>
+<h3 id="git-push-冲突解决方法："><a href="#git-push-冲突解决方法：" class="headerlink" title="git push 冲突解决方法："></a>git push 冲突解决方法：</h3><p>  <code>$ git push -u origin master -f   //强制push至服务器,慎用</code></p>
+<a id="more"></a>   
+<p>合作项目的时候，还是建议不要用这种方法的好。<br>一般采用如下解决方案：</p>
+<ol>
+<li><p>push前先将远程repository修改pull下来：</p>
+<p><code>$ git pull origin master</code><br><code>$ git push -u origin master</code></p>
+</li>
+<li><p>若不想merge远程和本地修改，可以先创建新的分支：</p>
+<p><code>$ git branch [name]</code><br><code>$ git push -u origin [name]</code></p>
+</li>
+<li><p>本地git 回滚</p>
+<figure class="highlight plain"><figcaption><span>git log -3</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> commit 4dc08bb8996a6ee02f</span><br><span class="line"> Author: Mark &lt;xxx@xx.com&gt;</span><br><span class="line"> Date:   Wed Sep 7 08:08:53 2016 +0800</span><br><span class="line"></span><br><span class="line">     xxxxx</span><br><span class="line"></span><br><span class="line"> commit 9cac9ba76574da2167</span><br><span class="line"> Author: xxx&lt;xx@qq.com&gt;</span><br><span class="line"> Date:   Tue Sep 6 22:18:59 2016 +0800</span><br><span class="line"></span><br><span class="line">     improved the requst</span><br><span class="line"></span><br><span class="line"> commit e377f60e28c8b84158</span><br><span class="line"> Author: xxx&lt;xxx@qq.com&gt;</span><br><span class="line"> Date:   Tue Sep 6 14:42:44 2016 +0800</span><br><span class="line"></span><br><span class="line">     changed the password from empty to max123</span><br><span class="line"></span><br><span class="line">     回滚到指定的版本</span><br><span class="line"></span><br><span class="line">git reset --hard e377f60e28c8b84158</span><br><span class="line"></span><br><span class="line">强制提交</span><br><span class="line"></span><br><span class="line">git push -f origin master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
       
 
       
@@ -213,6 +242,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -263,7 +307,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://ovision.github.io/2018/08/13/posted by atom markdown writer/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://ovision.github.io/2018/02/05/Github-tutorial/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -277,18 +321,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/08/13/drafts test/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/02/06/raspberry-pi-nodejs-setup/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          让你的Hexo博客支持LaTex公式写作
+          树莓派安装nodejs来部署hexo更新github博客
         
       </div>
     </a>
   
   
-    <a href="/2018/04/12/raspberry-pi-cloudprint/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">A Raspberry Pi Cloud Print Proxy</div>
+    <a href="/2018/02/04/hexo-configuration-backup-by-github-branch/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用github的branch分支管理和备份Hexo博客</div>
       <i class="icon-circle-right"></i>
     </a>
   
